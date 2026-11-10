@@ -42,6 +42,8 @@ router 在 lan0 錄製 ARP 與實驗網站的 TCP/80 流量。每次開始錄製
 
 ## 平台範圍
 
+網卡命名需要 Docker Engine 28.1 或更新版，以及 Docker Compose 2.36 或更新版。
+
 Linux 原生 rootful Docker 是 macvlan 的上游支援路徑。CI 使用 Linux amd64 與 arm64 執行建置及實際容器流程。macOS 手冊使用 Lima 的 rootful Docker VM，並把專案掛載為可寫入目錄。
 
 本專案先前已在 Windows Docker Desktop 的 WSL 2 Linux 引擎實測。Docker 官方將 Docker Desktop 列於 macvlan 的不支援平台，桌面端的可用性仍與引擎版本及後端有關。遇到網路建立失敗時，請記錄版本與完整錯誤。

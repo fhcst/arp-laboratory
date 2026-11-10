@@ -43,7 +43,7 @@ docker version
 docker compose version
 ```
 
-`docker version` 應顯示 **Client** 和 **Server**，Server 的作業系統應為 Linux。初次啟動需要網路下載映像。
+`docker version` 應顯示 **Client** 和 **Server**，Server 的作業系統應為 Linux，Engine 版本至少為 **28.1**。初次啟動需要網路下載映像。
 
 3. 從專案頁選 **Code → Download ZIP**，解壓縮後將資料夾命名為 `arp-lab`。 以解壓到「下載」資料夾為例，在 PowerShell 進入含有 `compose.yaml` 的那層。若存放位置不同，請換成自己的路徑。 [ARP Laboratory 專案](https://github.com/fhcst/arp-laboratory)
 

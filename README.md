@@ -33,7 +33,7 @@
 
 ## 快速啟動
 
-準備執行 Linux 容器的 Docker Engine，以及 **Docker Compose 2.36 或更新版**。Windows 使用 Docker Desktop 的 WSL 2 後端。macOS 依手冊建立 Lima rootful Docker VM，從共享專案目錄操作。
+準備 **Docker Engine 28.1 或更新版**與 **Docker Compose 2.36 或更新版**，並使用 Linux 容器。Windows 使用 Docker Desktop 的 WSL 2 後端。macOS 依手冊建立 Lima rootful Docker VM，從共享專案目錄操作。
 
 ```bash
 git clone https://github.com/fhcst/arp-laboratory.git

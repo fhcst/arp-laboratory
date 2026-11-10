@@ -68,7 +68,7 @@ docker version
 docker compose version
 ```
 
-確認看得到 `compose.yaml`、Docker 有 **Server** 區塊，且 Compose 為 **2.36 或更新版**。後續重新開機時，從 Mac 的專案目錄執行 `limactl start arp-lab`，再用上方指令進入 VM。 [Compose 網卡命名需求](https://docs.docker.com/reference/compose-file/services/#interface_name)
+確認看得到 `compose.yaml`、Docker 有 **Server** 區塊、Engine 至少為 **28.1**，且 Compose 為 **2.36 或更新版**。後續重新開機時，從 Mac 的專案目錄執行 `limactl start arp-lab`，再用上方指令進入 VM。 [Compose 網卡命名需求](https://docs.docker.com/reference/compose-file/services/#interface_name)
 
 <!-- page -->
 
