@@ -1,9 +1,118 @@
+# 本機環境設定與憑證
 .env
+.env.*
+!.env.example
+.secrets/
+*.key
+*.p12
+*.pfx
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+# 實驗封包與執行紀錄
 /captures/*
 !/captures/.gitkeep
 *.pcap
 *.pcapng
-.DS_Store
+*.cap
+*.log
+logs/
+*.pid
+*.pid.lock
+
+# Windows
 Thumbs.db
-.venv/
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.stackdump
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100/
+.Trashes/
+.fseventsd/
+
+# Linux 與暫存檔
+.directory
+.Trash-*/
+.nfs*
+*~
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+
+# 編輯器與 IDE 的本機狀態
+.vscode/
+.idea/
+.vs/
+.fleet/
+.history/
+*.iml
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.swp
+*.swo
+Session.vim
+
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+ENV/
+.tox/
+.nox/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+__pypackages__/
+
+# Node.js 與前端工具
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/cache/
+*.tsbuildinfo
+
+# PHP
+vendor/
+.phpunit.cache/
+.phpunit.result.cache
+composer.phar
+
+# 本機 Docker 設定與 Compose override
+.docker/
+compose.override.yaml
+compose.override.yml
+docker-compose.override.yaml
+docker-compose.override.yml
+
+# 產生的建置與暫存目錄
+/build/
+/dist/
+/tmp/
+/temp/
+
+# docs/handouts/ 的 PDF、Markdown ZIP 與圖片是正式教材，保留版本控制。

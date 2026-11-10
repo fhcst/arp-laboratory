@@ -22,6 +22,10 @@
 
 </div>
 
+## 直接下載實驗環境
+
+從 [最新 Release](https://github.com/fhcst/arp-laboratory/releases/latest) 下載完整實驗環境 ZIP，以及 Windows、macOS 兩份 PDF。將環境 ZIP 解壓縮後，進入內含的 `arp-lab` 資料夾，執行 `docker compose up -d`。首次啟動需連網下載 GHCR 映像。Release ZIP 已附固定映像版本的 `.env`，教材也收錄在 `docs/handouts/`。
+
 ## 先下載學生手冊
 
 兩份手冊都有封面、目錄、操作截圖與實驗驗收步驟，適合學生在自己的電腦預習。內容涵蓋環境啟動、桌面連線、帳密確認、重新錄製與 PCAP 判讀。
