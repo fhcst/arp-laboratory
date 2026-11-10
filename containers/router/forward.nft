@@ -1,0 +1,11 @@
+table ip lab {
+    chain forward {
+        type filter hook forward priority filter; policy drop;
+
+        ct state invalid counter drop
+        iifname "lan0" oifname "wan0" ip saddr 10.0.0.0/16 ip daddr 203.72.59.10 tcp dport 80 counter accept
+        iifname "lan0" oifname "wan0" ip saddr 10.0.0.0/16 ip daddr 203.72.59.10 icmp type echo-request counter accept
+        iifname "wan0" oifname "lan0" ip saddr 203.72.59.10 ip daddr 10.0.0.0/16 ct state { established, related } counter accept
+        counter drop
+    }
+}

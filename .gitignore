@@ -1,0 +1,9 @@
+.env
+/captures/*
+!/captures/.gitkeep
+*.pcap
+*.pcapng
+.DS_Store
+Thumbs.db
+.venv/
+__pycache__/

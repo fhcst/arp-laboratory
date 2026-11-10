@@ -1,0 +1,62 @@
+services:
+  g01-router:
+    extends: {file: compose.services.yaml, service: router}
+    volumes:
+      - ./captures/${ARP_LAB_ENV_G01_NAME:-g01}:/captures
+    networks:
+      g01-lan: {interface_name: lan0}
+      g01-wan: {interface_name: wan0}
+
+  g01-server:
+    extends: {file: compose.services.yaml, service: server}
+    networks:
+      g01-wan: {interface_name: wan0}
+
+  g01-victim:
+    extends: {file: compose.services.yaml, service: victim}
+    depends_on:
+      g01-router: {condition: service_healthy}
+      g01-server: {condition: service_healthy}
+    networks:
+      g01-lan: {interface_name: lan0}
+
+  g01-attack:
+    extends: {file: compose.services.yaml, service: attack}
+    environment:
+      LAB_ATTACK_PASSWORD: ${LAB_ATTACK_PASSWORD_G01:-${LAB_ATTACK_PASSWORD:-demo-desktop-password}}
+      LAB_VNC_PASSWORD: ${LAB_VNC_PASSWORD_G01:-labvnc01}
+    networks:
+      g01-lan: {interface_name: lan0}
+
+  g01-access:
+    extends: {file: compose.services.yaml, service: access}
+    depends_on:
+      g01-attack: {condition: service_healthy}
+    ports:
+      - "127.0.0.1:${LAB_SSH_PORT_G01:-${LAB_SSH_PORT:-2222}}:2222"
+      - "127.0.0.1:${LAB_RDP_PORT_G01:-${LAB_RDP_PORT:-13389}}:13389"
+      - "127.0.0.1:${LAB_VNC_PORT_G01:-15901}:15901"
+      - "127.0.0.1:${LAB_NOVNC_PORT_G01:-6080}:6080"
+    networks:
+      g01-lan: {interface_name: lan0}
+      g01-management: {interface_name: mgmt0, gw_priority: 1}
+
+networks:
+  g01-lan:
+    driver: macvlan
+    internal: true
+    enable_ipv4: false
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: fd56:be19:7742:01a::/64
+  g01-wan:
+    driver: macvlan
+    internal: true
+    enable_ipv4: false
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: fd56:be19:7742:01b::/64
+  g01-management:
+    driver: bridge

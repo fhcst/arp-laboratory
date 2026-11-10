@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 學生手冊
+    url: https://github.com/fhcst/arp-laboratory/tree/main/docs/handouts
+    about: Windows、macOS 的操作手冊與 PDF。
+  - name: 私密弱點回報
+    url: https://github.com/fhcst/arp-laboratory/security/advisories/new
+    about: 回報非預期的跨組存取、憑證洩漏或隔離問題。

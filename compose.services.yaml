@@ -1,0 +1,61 @@
+x-web-credentials: &web-credentials
+  LAB_WEB_USER: ${LAB_WEB_USER:-admin}
+  LAB_WEB_PASSWORD: ${LAB_WEB_PASSWORD:-demo-http-password}
+
+services:
+  router:
+    image: ${LAB_IMAGE_PREFIX:-ghcr.io/fhcst/arp-laboratory}-router:${LAB_IMAGE_TAG:-latest}
+    init: true
+    cap_add: [NET_ADMIN]
+    sysctls:
+      net.ipv4.ip_forward: "1"
+      net.ipv4.conf.all.send_redirects: "0"
+      net.ipv4.conf.default.send_redirects: "0"
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -x tcpdump >/dev/null"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+
+  server:
+    image: ${LAB_IMAGE_PREFIX:-ghcr.io/fhcst/arp-laboratory}-server:${LAB_IMAGE_TAG:-latest}
+    init: true
+    cap_add: [NET_ADMIN]
+    environment: *web-credentials
+    healthcheck:
+      test: ["CMD", "curl", "--noproxy", "*", "-fsS", "--max-time", "2", "http://127.0.0.1/"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  victim:
+    image: ${LAB_IMAGE_PREFIX:-ghcr.io/fhcst/arp-laboratory}-victim:${LAB_IMAGE_TAG:-latest}
+    init: true
+    cap_add: [NET_ADMIN]
+    environment:
+      <<: *web-credentials
+      LAB_INTERVAL: ${LAB_INTERVAL:-10}
+
+  attack:
+    image: ${LAB_IMAGE_PREFIX:-ghcr.io/fhcst/arp-laboratory}-attack:${LAB_IMAGE_TAG:-latest}
+    init: true
+    cap_add: [NET_ADMIN]
+    sysctls:
+      net.ipv4.ip_forward: "1"
+      net.ipv4.conf.all.send_redirects: "0"
+      net.ipv4.conf.default.send_redirects: "0"
+    environment:
+      LAB_ATTACK_PASSWORD: ${LAB_ATTACK_PASSWORD:-demo-desktop-password}
+    healthcheck:
+      test: ["CMD-SHELL", "ss -H -ltn 'sport = :22' | grep -q . && ss -H -ltn 'sport = :3389' | grep -q . && ss -H -ltn 'sport = :5901' | grep -Fq '10.0.0.20:5901' && curl --noproxy '*' -fsS --max-time 1 http://10.0.0.20:6080/vnc.html >/dev/null"]
+      interval: 3s
+      timeout: 2s
+      retries: 10
+
+  access:
+    image: ${LAB_IMAGE_PREFIX:-ghcr.io/fhcst/arp-laboratory}-access:${LAB_IMAGE_TAG:-latest}
+    init: true
+    cap_drop: [ALL]
+    cap_add: [NET_ADMIN, SETPCAP]
+    sysctls:
+      net.ipv4.ip_forward: "0"

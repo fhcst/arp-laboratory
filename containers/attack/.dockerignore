@@ -1,0 +1,5 @@
+*
+!Dockerfile
+!start.sh
+!supervisord.conf
+!xsession.sh

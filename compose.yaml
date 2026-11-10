@@ -1,0 +1,5 @@
+name: arp-lab
+
+include:
+  - compose.g01.yaml
+  # - compose.g02.yaml

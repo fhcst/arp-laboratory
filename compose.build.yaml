@@ -1,0 +1,22 @@
+# Apply with: docker compose -f compose.yaml -f compose.build.yaml up -d --build
+services:
+  g01-router:
+    image: arp-laboratory-router:local
+    build: ./containers/router
+    pull_policy: build
+  g01-access:
+    image: arp-laboratory-access:local
+    build: ./containers/access
+    pull_policy: build
+  g01-server:
+    image: arp-laboratory-server:local
+    build: ./containers/server
+    pull_policy: build
+  g01-victim:
+    image: arp-laboratory-victim:local
+    build: ./containers/victim
+    pull_policy: build
+  g01-attack:
+    image: arp-laboratory-attack:local
+    build: ./containers/attack
+    pull_policy: build

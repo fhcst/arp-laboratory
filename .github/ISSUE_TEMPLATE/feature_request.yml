@@ -1,0 +1,15 @@
+name: 改善建議
+description: 提出教學、操作流程或維護方面的改善
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: 使用情境與遇到的限制
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 希望達成的結果
+    validations:
+      required: true

@@ -1,0 +1,23 @@
+name: 問題回報
+description: 回報建置、連線、隔離或教材步驟問題
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: 環境
+      description: 作業系統、CPU 架構、Docker 和 Compose 版本、映像標籤。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 重現步驟與預期結果
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 實際結果與紀錄
+      description: 請先移除帳密、PCAP 和學生個資。
+    validations:
+      required: true
